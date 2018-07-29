@@ -1,19 +1,6 @@
-'''
-Camera Example
-==============
+#Code Scanner
 
-This example demonstrates a simple use of the camera. It shows a window with
-a buttoned labelled 'play' to turn the camera on and off. Note that
-not finding a camera, perhaps because gstreamer is not installed, will
-throw an exception during the kv language processing.
-
-'''
-
-# Uncomment these lines to see all the messages
-# from kivy.logger import Logger
-# import logging
-# Logger.setLevel(logging.TRACE)
-
+#Accessing camera
 from kivy.app import App
 from kivy.lang import Builder
 from kivy.uix.boxlayout import BoxLayout
@@ -119,19 +106,17 @@ class Root(FloatLayout):
 
 
 class Editor(App):
-    pass
-
-
-Factory.register('Root', cls=Root)
-Factory.register('LoadDialog', cls=LoadDialog)
-Factory.register('SaveDialog', cls=SaveDialog)
+    def factory(self):
+	Factory.register('Root', cls=Root)
+	Factory.register('LoadDialog', cls=LoadDialog)
+	Factory.register('SaveDialog', cls=SaveDialog)
 
 Editor().run()
 
 
 import subprocess
 import kivy
-kivy.require('1.0.6') # replace with your current kivy version !
+kivy.require('1.0.6')
 
 from kivy.app import App
 from kivy.uix.label import Label
@@ -140,22 +125,13 @@ from kivy.uix.label import Label
 import sys
 f = open("output.txt", 'w')
 sys.stdout = f
-     
+
 cmd = "code.c"
 
 print ("C code output\n")
-subprocess.call(["gcc",cmd]) #For Compiling
-subprocess.call("./a.out") 
+#Compile the code
+subprocess.call(["gcc",cmd])
+subprocess.call("./a.out")
 f.close()
 
-#class MyApp(App):
-#   def build(self):
-#        fin = open("output.txt","r")
-#        print(fin)
-#        output=fin.readLines()
-#        print(output)
-#        fin.close()
-#        return Label(text=output)
-
-#MyApp().run()
 
